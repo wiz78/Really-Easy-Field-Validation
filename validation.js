@@ -143,13 +143,14 @@ Object.extend(Validation, {
 							case 'radio':
 								var p = elm.parentNode;
 								if(p) {
-									new Insertion.Bottom(p, advice);
+									p.insert({bottom: advice});
 								} else {
-									new Insertion.After(elm, advice);
+									elm.insert({after: advice});
 								}
 								break;
 							default:
-								new Insertion.After(elm, advice);
+								elm.insert({after: advice});
+								break;
 					    }
 						advice = Validation.getAdvice(name, elm);
 					}
