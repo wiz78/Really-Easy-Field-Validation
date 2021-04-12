@@ -1,0 +1,12 @@
+const STR_REQUIRED_FIELD='This field is required.';
+const STR_VALIDATE_NUMBER='Insert a valid number in this field.';
+const STR_VALIDATE_DIGITS='Insert digits only in this field. Avoid spaces and other characters such as commas or dots.';
+const STR_VALIDATE_ALPHA='Use only letters (a-z) in this field.';
+const STR_VALIDATE_URL='Insert a valid URL.';
+const STR_VALIDATE_EMAIL='Insert a valid email address.';
+const STR_VALIDATE_ALPHANUM='Insert only letters (a-z) or numbers (0-9) in this field. No spaces or other characters.';
+const STR_VALIDATE_SELECTION='Make a selection';
+const STR_VALIDATE_ONE_OPTION='Choose one of the options.';
+const STR_VALIDATE_DATE='Insert a date in the dd/mm/yyyy format';
+const STR_VALIDATE_DATE_US='Please enter a valid date.';
+const STR_VALIDATE_TIME='Insert a time in the hh:mm format';

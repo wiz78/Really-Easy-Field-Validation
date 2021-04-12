@@ -228,46 +228,56 @@ Validation.add('IsEmpty', '', function(v) {
 			});
 
 Validation.addAllThese([
-	['required', 'This is a required field.', function(v) {
+	['required', STR_REQUIRED_FIELD, function(v) {
 				return !Validation.get('IsEmpty').test(v);
 			}],
-	['validate-number', 'Please enter a valid number in this field.', function(v) {
+	['validate-number', STR_VALIDATE_NUMBER, function(v) {
 				return Validation.get('IsEmpty').test(v) || (!isNaN(v) && !/^\s+$/.test(v));
 			}],
-	['validate-digits', 'Please use numbers only in this field. please avoid spaces or other characters such as dots or commas.', function(v) {
+	['validate-digits', STR_VALIDATE_DIGITS, function(v) {
 				return Validation.get('IsEmpty').test(v) ||  !/[^\d]/.test(v);
 			}],
-	['validate-alpha', 'Please use letters only (a-z) in this field.', function (v) {
+	['validate-alpha', STR_VALIDATE_ALPHA, function (v) {
 				return Validation.get('IsEmpty').test(v) ||  /^[a-zA-Z]+$/.test(v)
 			}],
-	['validate-alphanum', 'Please use only letters (a-z) or numbers (0-9) only in this field. No spaces or other characters are allowed.', function(v) {
+	['validate-alphanum', STR_VALIDATE_ALPHANUM, function(v) {
 				return Validation.get('IsEmpty').test(v) ||  !/\W/.test(v)
 			}],
-	['validate-date', 'Please enter a valid date.', function(v) {
+	['validate-date', STR_VALIDATE_DATE_US, function(v) {
 				//var test = new Date(v);
 				//return Validation.get('IsEmpty').test(v) || !isNaN(test);
 				if(Validation.get('IsEmpty').test(v)) return true;
 				var regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
 				if(!regex.test(v)) return false;
 				var d = new Date(v);
-				return ( parseInt(RegExp.$2, 10) == (1+d.getMonth()) ) && 
-							(parseInt(RegExp.$1, 10) == d.getDate()) && 
+				return ( parseInt(RegExp.$2, 10) == (1+d.getMonth()) ) &&
+							(parseInt(RegExp.$1, 10) == d.getDate()) &&
 							(parseInt(RegExp.$3, 10) == d.getFullYear() );
 			}],
-	['validate-email', 'Please enter a valid email address. For example fred@domain.com.', function (v) {
+	['validate-email', STR_VALIDATE_EMAIL, function (v) {
 				return Validation.get('IsEmpty').test(v) || /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(v)
 			}],
-	['validate-url', 'Please enter a valid URL.', function (v) {
+	['validate-url', STR_VALIDATE_URL, function (v) {
 				return Validation.get('IsEmpty').test(v) || /^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i.test(v)
 			}],
-	['validate-date-au', 'Please use this date format: dd/mm/yyyy. For example 17/03/2006 for the 17th of March, 2006.', function(v) {
+	['validate-date-au', STR_VALIDATE_DATE, function(v) {
 				if(Validation.get('IsEmpty').test(v)) return true;
 				var regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
 				if(!regex.test(v)) return false;
 				var d = new Date(v.replace(regex, '$2/$1/$3'));
-				return ( parseInt(RegExp.$2, 10) == (1+d.getMonth()) ) && 
-							(parseInt(RegExp.$1, 10) == d.getDate()) && 
+				return ( parseInt(RegExp.$2, 10) == (1+d.getMonth()) ) &&
+							(parseInt(RegExp.$1, 10) == d.getDate()) &&
 							(parseInt(RegExp.$3, 10) == d.getFullYear() );
+			}],
+	['validate-time', STR_VALIDATE_TIME, function(v) {
+				if(Validation.get('IsEmpty').test(v)) return true;
+				var regex = /^(\d{2}):(\d{2})$/;
+				if(!regex.test(v)) return false;
+				var p = v.split( ':' );
+				var h = parseInt( p[0] );
+				var m = parseInt( p[1] );
+				return (( h >= 0 ) && ( h < 24 ) &&
+						( m >= 0 ) && ( m < 60 ));
 			}],
 	['validate-currency-dollar', 'Please enter a valid $ amount. For example $100.00 .', function(v) {
 				// [$]1[##][,###]+[.##]
@@ -276,10 +286,10 @@ Validation.addAllThese([
 				// [$].##
 				return Validation.get('IsEmpty').test(v) ||  /^\$?\-?([1-9]{1}[0-9]{0,2}(\,[0-9]{3})*(\.[0-9]{0,2})?|[1-9]{1}\d*(\.[0-9]{0,2})?|0(\.[0-9]{0,2})?|(\.[0-9]{1,2})?)$/.test(v)
 			}],
-	['validate-selection', 'Please make a selection', function(v,elm){
-				return elm.options ? elm.selectedIndex > 0 : !Validation.get('IsEmpty').test(v);
+	['validate-selection', STR_VALIDATE_SELECTION, function(v,elm){
+				return elm.options ? elm.selectedIndex >= 0 : !Validation.get('IsEmpty').test(v);
 			}],
-	['validate-one-required', 'Please select one of the above options.', function (v,elm) {
+	['validate-one-required', STR_VALIDATE_ONE_OPTION, function (v,elm) {
 				var p = elm.parentNode;
 				var options = p.getElementsByTagName('INPUT');
 				return $A(options).any(function(elm) {

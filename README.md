@@ -8,6 +8,7 @@ Include the javascript libraries:
 
 ```html
 <script src="prototype.js" type="text/javascript"></script>
+<script src="locale.js" type="text/javascript"></script>
 <script src="validation.js" type="text/javascript"></script>
 ```
 
