@@ -138,14 +138,14 @@ Object.extend(Validation, {
 						advice = '<div class="validation-advice validation-hidden" id="advice-' + name + '-' + Validation.getElmID(elm) +'">' + errorMsg + '</div>';
 						switch (elm.type.toLowerCase()) {
 							case 'checkbox':
-							case 'radio':
+							case 'radio': {
 								const p = elm.parentNode;
 								if(p) {
 									p.insert({bottom: advice});
 								} else {
 									elm.insert({after: advice});
 								}
-								break;
+							}	break;
 							default:
 								elm.insert({after: advice});
 								break;
