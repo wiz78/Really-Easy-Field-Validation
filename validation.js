@@ -83,7 +83,7 @@ Validation.prototype = {
 		if(this.options.immediate) {
 			const useTitles = this.options.useTitles;
 			const callback = this.options.onElementValidate;
-			Form.getElements(this.form).each(function(input) { // Thanks Mike!
+			Form.getElements(this.form).forEach(function(input) { // Thanks Mike!
 				Event.observe(input, 'blur', function(ev) { Validation.validate(Event.element(ev),{useTitle : useTitles, onElementValidate : callback}); });
 			});
 		}
@@ -107,7 +107,7 @@ Validation.prototype = {
 		return result;
 	},
 	reset : function() {
-		Form.getElements(this.form).each(Validation.reset);
+		Form.getElements(this.form).forEach(Validation.reset);
 	}
 };
 
