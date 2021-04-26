@@ -70,11 +70,6 @@ You can set callbacks by using the options `{onFormValidate : yourFunction, onEl
 
 Instead of using the error message in the validator you can create your own validation advice page element. Now when the script is creating the advice element it first looks for an element with an `id` matching `'advice-' + validation-class-name + '-' + element.id` and if not found then one matching `'advice-' + element.id`. If your form element does not have an `id` attribute then match the name attribute. If it finds an element it will make that one appear. See the 'Donation' field in the demo for an example. If you make a custom validation advice element make sure you set the style to `display: none`.
 
-Also if you reference the effects.js file from Scriptaculous in your page head, it'll use a fade-in effect for the validation advice.
-
-```html
-<script src="effects.js" type="text/javascript"></script>
-```
 
 ## CSS Hooks
 

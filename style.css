@@ -1,28 +1,36 @@
-body {
+body
+{
 	color: #333;
 	padding: 0 30px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 76%;
 }
 
-.panel {
+.panel
+{
 	clear: both;
 	display: none;
 	border: 3px solid #CCC;
 	padding: 1em;
 }
-.panel.active-tab-body {
+
+.panel.active-tab-body
+{
 	display: block;
 }
-#tabs {
+
+#tabs
+{
 	list-style: none;
 }
 
-#tabs li {
+#tabs li
+{
 	float: left;
 }
 
-#tabs a {
+#tabs a
+{
 	float: left;
 	padding: 5px 8px;
 	margin-left: 6px;
@@ -31,38 +39,76 @@ body {
 	color: #999999;
 }
 
-#tabs a.active-tab {
+#tabs a.active-tab
+{
 	background-color: #CCC;
 	border-top: 3px solid #999;
 	padding-top: 3px;
 	color: #000;
 }
-input.disabled {
+
+input.disabled
+{
 	border: 1px solid #F2F2F2;
 	background-color: #F2F2F2;
 }
 
-input.required, textarea.required {
+input.required, textarea.required
+{
 	border: 1px solid #00A8E6;
 }
-input.validation-failed, textarea.validation-failed {
+
+input.validation-failed, textarea.validation-failed
+{
 	border: 1px solid #FF3300;
 	color : #FF3300;
 }
-input.validation-passed, textarea.validation-passed {
+
+input.validation-passed, textarea.validation-passed
+{
 	border: 1px solid #00CC00;
 	color : #000;
 }
 
-.validation-advice {
+.validation-advice
+{
 	margin: 5px 0;
 	padding: 5px;
 	background-color: #FF3300;
-	color : #FFF;
+	color: #FFF;
 	font-weight: bold;
+	animation: fadeInFromNone 0.3s ease-in;
 }
 
-.custom-advice {
+.validation-advice.validation-hidden
+{
+	opacity: 0;
+	display: none;
+}
+
+@keyframes fadeInFromNone
+{
+    0%
+	{
+        display: none;
+        opacity: 0;
+    }
+
+    0.001%
+	{
+        display: block;
+        opacity: 0;
+    }
+
+    100%
+	{
+        display: block;
+        opacity: 1;
+    }
+}
+
+.custom-advice
+{
 	margin: 5px 0;
 	padding: 5px;
 	background-color: #C8AA00;
@@ -70,23 +116,19 @@ input.validation-passed, textarea.validation-passed {
 	font-weight: bold;
 }
 
-fieldset {
+fieldset
+{
 	padding: 1em;
 	margin-bottom: 0.5em;
 }
 
-label {
+label
+{
 	font-weight: bold;
 }
-.form-row {
+
+.form-row
+{
 	clear: both;
 	padding: 0.5em;
-}
-
-.field-label {
-
-}
-
-.field-widget {
-
 }

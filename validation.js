@@ -137,7 +137,7 @@ Object.extend(Validation, {
 					var advice = Validation.getAdvice(name, elm);
 					if(advice === null) {
 						var errorMsg = useTitle ? ((elm && elm.title) ? elm.title : v.error) : v.error;
-						advice = '<div class="validation-advice" id="advice-' + name + '-' + Validation.getElmID(elm) +'" style="display:none">' + errorMsg + '</div>';
+						advice = '<div class="validation-advice validation-hidden" id="advice-' + name + '-' + Validation.getElmID(elm) +'">' + errorMsg + '</div>';
 						switch (elm.type.toLowerCase()) {
 							case 'checkbox':
 							case 'radio':
@@ -154,11 +154,7 @@ Object.extend(Validation, {
 					    }
 						advice = Validation.getAdvice(name, elm);
 					}
-					if(typeof Effect == 'undefined') {
-						advice.show();
-					} else {
-						new Effect.Appear(advice, {duration : 1 });
-					}
+					advice.removeClassName('validation-hidden');
 				}
 				elm[prop] = true;
 				elm.removeClassName('validation-passed');
@@ -166,7 +162,7 @@ Object.extend(Validation, {
 				return false;
 			} else {
 				var advice = Validation.getAdvice(name, elm);
-				if(advice != null) advice.hide();
+				if(advice != null) advice.addClassName('validation-hidden');
 				elm[prop] = '';
 				elm.removeClassName('validation-failed');
 				elm.addClassName('validation-passed');
@@ -192,11 +188,11 @@ Object.extend(Validation, {
 	reset : function(elm) {
 		elm = $(elm);
 		var cn = elm.classNames();
-		cn.each(function(value) {
+		cn.forEach(function(value) {
 			var prop = '__advice'+value.camelize();
 			if(elm[prop]) {
 				var advice = Validation.getAdvice(value, elm);
-				advice.hide();
+				advice.addClassName('validation-hidden');
 				elm[prop] = '';
 			}
 			elm.removeClassName('validation-failed');
@@ -210,7 +206,7 @@ Object.extend(Validation, {
 	},
 	addAllThese : function(validators) {
 		var nv = {};
-		$A(validators).each(function(value) {
+		$A(validators).forEach(function(value) {
 				nv[value[0]] = new Validator(value[0], value[1], value[2], (value.length > 3 ? value[3] : {}));
 			});
 		Object.extend(Validation.methods, nv);
