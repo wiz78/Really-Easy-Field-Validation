@@ -247,7 +247,7 @@ Validation.addAllThese([
 					   ( parseInt(RegExp.$3, 10) == d.getFullYear() );
 			}],
 	['validate-email', STR_VALIDATE_EMAIL, function (v) {
-				return Validation.get('IsEmpty').test(v) || /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(v)
+				return Validation.get('IsEmpty').test(v) || /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,}))+$/.test(v)
 			}],
 	['validate-url', STR_VALIDATE_URL, function (v) {
 				return Validation.get('IsEmpty').test(v) || /^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i.test(v)
